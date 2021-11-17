@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework.decorators import api_view
-
+import cx_Oracle
 from apibase.forms.user_mgmt import SignUpForm
 
 
@@ -18,7 +18,10 @@ def signup(request):
         # email = form.cleaned_data['email']
 
         #call sp here
-        # --------------------
+        # connection = cx_Oracle.connect('db_user', 'db_password', 'connection_srting')
+        # cursor = connection.cursor()
+        # result = cursor.execute("call sp here")
+
         return JsonResponse({'status': 'success', 'error_code':200, 'message': form.cleaned_data}, safe=False)
     else:
         return JsonResponse({'status': 'failed', 'error_code': 400, 'message': form.errors}, safe=False)
